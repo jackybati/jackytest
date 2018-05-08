@@ -16,5 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/test', 'V1\TestController@index');
-
+//不用验证权限
+Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
+    Route::get('test', 'TestController@index');//测试
+});
