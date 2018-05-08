@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    Route::get('test2', 'TestController@test2');//测试
 });
 
 Route::group(['prefix' => 'v1', 'namespace' => 'V1'], function () {
