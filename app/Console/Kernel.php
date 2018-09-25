@@ -2,8 +2,25 @@
 
 namespace App\Console;
 
+use App\Http\Controllers\V1\CommonController;
+use App\Http\Controllers\V1\CountController;
+use App\Http\Controllers\V1\MediaLiveController;
+use App\Http\Controllers\V1\ReviewController;
+use App\Http\Controllers\V1\NewsController;
+use App\Tables\MediaLiveContent;
+use App\Tables\MediaOriginalDegree;
+use App\Tables\MediaPunishHistory;
+use App\Tables\News;
+use App\Tables\NewsSnm;
+use App\Tables\SystemNotification;
+use App\Tables\TvProgramReview;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Tables\BadWordCheck;
+use App\Http\Controllers\V1\ScriptCodeController;
+use App\Http\Controllers\V1\MaterialMediaController;
+use App\Http\Controllers\V1\SystemNotificationController;
+use App\Tables\Media;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +30,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        // Commands\Inspire::class,
+        Commands\test::class,
     ];
 
     /**
@@ -24,17 +42,5 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-    }
-
-    /**
-     * Register the Closure based commands for the application.
-     *
-     * @return void
-     */
-    protected function commands()
-    {
-        require base_path('routes/console.php');
     }
 }

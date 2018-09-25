@@ -15,9 +15,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-        \App\Http\Middleware\TrimStrings::class,
-        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\Cors::class,
     ];
 
     /**
@@ -30,15 +28,12 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \App\Http\Middleware\VerifyCsrfToken::class,
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+//            \App\Http\Middleware\VerifyCsrfToken::class,
         ],
 
         'api' => [
             'throttle:60,1',
-            'bindings',
         ],
     ];
 
@@ -50,11 +45,24 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'admin.auth' => \App\Http\Middleware\UserAuth::class,
+        'admin.permission' => \App\Http\Middleware\Permission::class,
+        'platform.api.auth' => \App\Http\Middleware\PlatformRequestCheck::class,
+        'live.api.auth' => \App\Http\Middleware\LiveRequestCheck::class,
+        'admin.extPermission' => \App\Http\Middleware\MediaExtPermission::class,
+        'admin.verified' => \App\Http\Middleware\UserVerified::class,
+        'admin.inMedia' => \App\Http\Middleware\UserMedia::class,
+        'admin.common' => \App\Http\Middleware\Common::class,
+        'snm' => \App\Http\Middleware\Snm::class,
+        'admin.live.interactive.permission' => \App\Http\Middleware\LiveInteractivePermission::class,
+        'admin.live.interactive' => \App\Http\Middleware\LiveInteractive::class,
+        'mudu' => \App\Http\Middleware\Mudu::class,
+        'admin.live.permission' => \App\Http\Middleware\LivePermission::class,
+        'admin.media.status' => \App\Http\Middleware\MediaStatus::class,
     ];
 }
