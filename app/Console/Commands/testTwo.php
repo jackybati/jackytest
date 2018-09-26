@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Log;
 
-class Test extends Command
+class TestTwo extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'crontab:test';
+    protected $signature = 'crontab:testT';
 
     /**
      * The console command description.
@@ -39,8 +39,8 @@ class Test extends Command
     public function handle()
     {
         while(1){
-            Log::info('守护进程:'.time());
-            sleep(10);
+            Log::info('守护进程2:'.time());
+            sleep(11);
         }
     }
 }
